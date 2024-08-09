@@ -13,6 +13,7 @@ def home(request):
         if form.is_valid():
             text = form.cleaned_data['text']
             video_path = create_ticker(text)
+            print(video_path)
             
             # Сохранение данных в базе данных
             video_request = VideoRequest(text=text)
@@ -22,7 +23,7 @@ def home(request):
             # Возврат видеофайла в HTTP-ответе
             with open(video_path, 'rb') as f:
                 response = HttpResponse(f.read(), content_type='video/x-msvideo')
-                response['Content-Disposition'] = 'attachment; filename="output.avi"'
+                response['Content-Disposition'] = f'attachment; filename="{text.strip()[:20]}.avi"'
             
             # Удаление временного файла
             os.remove(video_path)
@@ -32,23 +33,3 @@ def home(request):
         form = TickerTextForm()
     
     return render(request, 'tickerapp/home.html', {'form': form})
-
-
-def video_view(request):
-    text = request.GET.get('text', 'Running Text Sample')
-
-    video_path = create_ticker(text)
-
-    # Сохранение данных в базе данных
-    video_request = VideoRequest(text=text)
-    video_request.video_file.save(os.path.basename(video_path), open(video_path, 'rb'))
-    video_request.save()
-
-    # Открытие видеофайла и возврат в HTTP-ответе
-    with open(video_path, 'rb') as f:
-        response = HttpResponse(f.read(), content_type='video/x-msvideo')
-        response['Content-Disposition'] = f'attachment; filename="{video_path}.avi"'
-
-    # Удаляем временный файл
-    os.remove(video_path)
-    return response
