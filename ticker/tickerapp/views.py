@@ -33,3 +33,4 @@ def home(request):
         form = TickerTextForm()
     
     return render(request, 'tickerapp/home.html', {'form': form})
+#comment
