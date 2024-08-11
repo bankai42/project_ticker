@@ -1,6 +1,7 @@
 asgiref==3.8.1
 Django==5.0.7
 django-debug-toolbar==4.4.6
+django-environ==0.11.2
 numpy==2.0.1
 opencv-python==4.10.0.84
 pillow==10.4.0
