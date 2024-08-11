@@ -1,2 +1,3 @@
+videos/
 venv/
-ticker/videos/
+*__pycache__
