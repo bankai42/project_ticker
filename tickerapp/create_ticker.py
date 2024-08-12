@@ -23,7 +23,7 @@ def create_ticker(text):
     video = cv2.VideoWriter(video_path, fourcc, fps, (video_width, video_height))
 
     # Загрузка шрифта
-    font_size = 80
+    font_size = 40
     font = ImageFont.truetype('running_str/myapp/fonts/arial.ttf', size=font_size)
 
     # Рассчитываем длину текста в пикселях
