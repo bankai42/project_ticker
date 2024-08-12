@@ -29,7 +29,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')#'django-insecure-2y#esz&*)7h0+gwthlhv35$=*#f-mu)_pc%*i!&_g&z6#(s0)%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -80,17 +80,23 @@ WSGI_APPLICATION = 'ticker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'tickerdb',
+#         'USER': 'postgres',
+#         'PASSWORD': 'ROOT',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tickerdb',
-        'USER': 'postgres',
-        'PASSWORD': 'ROOT',
-        'HOST': 'localhost',
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "tickerdb.sqlite3",
     }
 }
-
 
 
 # Password validation

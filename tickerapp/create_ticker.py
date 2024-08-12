@@ -6,6 +6,7 @@ import tempfile
 
 def create_ticker(text):
     # Параметры видео
+   # breakpoint()
     video_width = 100
     video_height = 100
     fps = 30
@@ -22,7 +23,7 @@ def create_ticker(text):
     video = cv2.VideoWriter(video_path, fourcc, fps, (video_width, video_height))
 
     # Загрузка шрифта
-    font_size = 40
+    font_size = 80
     font = ImageFont.truetype('running_str/myapp/fonts/arial.ttf', size=font_size)
 
     # Рассчитываем длину текста в пикселях
@@ -39,7 +40,7 @@ def create_ticker(text):
         draw = ImageDraw.Draw(image)
 
         # Рисуем текст
-        draw.text((x, int(video_height+text_height)/2), text, font=font, fill=(255, 255, 255))
+        draw.text((int(x), int(video_height+text_height)/2), text, font=font, fill=(255, 255, 255))
 
         # Конвертируем изображение в массив numpy
         frame = np.array(image)
@@ -48,7 +49,7 @@ def create_ticker(text):
         video.write(cv2.cvtColor(frame, cv2.COLOR_RGB2BGR))
 
         # Обновляем позицию текста
-        x -= int(text_width/(duration*fps))*1.5
+        x -= text_width/(duration*fps)*1.5
         if x < -text_width:
             x = video_width
 
