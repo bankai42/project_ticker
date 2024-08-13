@@ -24,7 +24,7 @@ def create_ticker(text):
 
     # Загрузка шрифта
     font_size = 40
-    font = ImageFont.truetype('running_str/myapp/fonts/arial.ttf', size=font_size)
+    font = ImageFont.truetype('tickerapp/fonts/Arial_Italic.ttf', size=font_size)
 
     # Рассчитываем длину текста в пикселях
     (left, top, right, bottom) = font.getbbox(text)
