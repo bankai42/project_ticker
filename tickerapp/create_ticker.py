@@ -4,14 +4,12 @@ from PIL import Image, ImageDraw, ImageFont
 import tempfile
 
 
-def create_ticker(text):
+def create_ticker(text: str, filename: str):
     # Параметры видео
-   # breakpoint()
     video_width = 100
     video_height = 100
     fps = 30
     duration = 3  # Длительность видео в секундах
-    #text = "Хочу на стажировку :)"  # Текст для отображения
 
     temp_file = tempfile.NamedTemporaryFile(suffix='.avi', delete=False)
     video_path = temp_file.name

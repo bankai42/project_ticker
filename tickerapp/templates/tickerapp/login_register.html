@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ticker Auth</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+</head>
+<body>
+    <a href="{% url 'home' %}">HOME</a>
+    {% if page == 'login' %}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter Username" />
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter Password" />
+            <input type="submit" value="Login" />
+            <p>Have not signed up yet?</p>
+            <a href="{% url 'register' %}">Sign up</a>
+        </form>
+    </div>
+    {% else %}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Register" />
+            <p>Already signed up?</p>
+            <a href="{% url 'login' %}">Log in</a>
+        </form>
+    </div>
+    {% endif %}
+    <script src="" async defer></script>
+</body>
+</html>
