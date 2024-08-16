@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Ticker Auth</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-</head>
+{% extends 'main.html' %}
+{% block content %}
+
 <body>
-    <a href="{% url 'home' %}">HOME</a>
     {% if page == 'login' %}
     <div>
         <form method="POST" action="">
@@ -36,4 +28,4 @@
     {% endif %}
     <script src="" async defer></script>
 </body>
-</html>
+{% endblock %}

@@ -1,67 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Ticker Profile</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <style>
-        table, th, td {
-          border:1px solid black;
-        }
-    </style>
+{% extends 'main.html' %}
+{% block content %}
 
-    <body>
-        <a href="{% url 'home' %}">HOME</a>
-        <div>
-            {% if user.is_authenticated %}
-            <p>{{user.username}}</p>
-            <a href="{% url 'logout' %}">
-                <p>Logout</p>
-            </a>
-            {% else %}
-            <a href="{% url 'login' %}">
-                <p>Login</p>
-            </a>
-            {% endif %}
-        </div>
-        <h1>My profile </h1>
-        <div class='userinfo'>
-            <p>Username: {{user.username}}</p>
-            <p>First Name: {{user.first_name}}</p>
-            <p>Last Name: {{user.last_name}}</p>
-            <p>Email: {{user.email}}</p>
-        </div>
-        <a href="{% url 'edit_profile' user.id %}">edit</a>
-
-
-        {% if request.user.is_authenticated %}
-        <h3>My latest created ticker:</h3>
-        <p>
-            Ticker Name: {{tickers.first.text}} ({{tickers.first.timestamp|timesince}} ago) <a href="{% url 'download' tickers.first.id %}">download link</a>
-        </p>
-        <h3>Created tickers:</h3>
-        <div class='ticker_table'>
-        <table>
-            <tr>
-                <th>Filename</th>
-                <th>Text</th>
-                <th>Date Created</th>
-                <th>Download</th>
-            </tr>
-            {% for ticker in tickers %}
-            <tr>
-                <td>{{ticker.filename}}</td>
-                <td>{{ticker.text}}</td>
-                <td>{{ticker.timestamp}}</td>
-                <td><a href="{% url 'download' ticker.id %}">download</a></td>
-            </tr>
-            {% endfor %}
-        </table>
-        </div>
-        {% endif %}
-    </body>
-</html>
+<body>
+    <h1>My profile </h1>
+    <div class='userinfo'>
+        <p>Username: {{user.username}}</p>
+        <p>First Name: {{user.first_name}}</p>
+        <p>Last Name: {{user.last_name}}</p>
+        <p>Email: {{user.email}}</p>
+    </div>
+    <a href="{% url 'edit_profile' user.id %}">edit</a>
+    {% if request.user.is_authenticated %}
+    <h3>My latest created ticker:</h3>
+    <p>
+        Ticker Name: {{tickers.first.text}} ({{tickers.first.timestamp|timesince}} ago) <a href="{% url 'download' tickers.first.id %}">download link</a>
+    </p>
+    <h3>Created tickers:</h3>
+    <div class='ticker_table'>
+    <table>
+        <tr>
+            <th>Filename</th>
+            <th>Text</th>
+            <th>Date Created</th>
+            <th>Download</th>
+        </tr>
+        {% for ticker in tickers %}
+        <tr>
+            <td>{{ticker.filename}}</td>
+            <td>{{ticker.text}}</td>
+            <td>{{ticker.timestamp}}</td>
+            <td><a href="{% url 'download' ticker.id %}">download</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    {% endif %}
+</body>
+{% endblock %}

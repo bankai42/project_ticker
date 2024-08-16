@@ -1,0 +1,33 @@
+{% load static %}
+
+<header class="header header--loggedIn">
+    <div class="container">
+        <a href="{% url 'home' %}" class="header__logo">
+            <!--img src="{% static 'ticker/images/logo.svg' %}" /-->
+            <h1>Ticker</h1>
+        </a>
+
+        <nav class="header__menu">
+            <!-- Logged In -->
+            {% if request.user.is_authenticated %}
+            <div class="header__user">
+                <a href="{% url 'profile' request.user.id %}">
+                    <p> {{request.user.first_name}} {{request.user.last_name}} <span>@{{request.user.username}}</span></p>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <p>Logout</p>
+                </a>
+            </div>
+
+            {% else %}
+            <!-- Not Logged In -->
+            <a href="{% url 'login' %}">
+                <p>Login</p>
+            </a>
+            {% endif %}
+        </nav>
+    </div>
+</header>
+
+
+<hr>
