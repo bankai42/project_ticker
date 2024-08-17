@@ -1,15 +1,15 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<body>
+<div class="login-register__body">
     {% if page == 'login' %}
     <div>
         <form method="POST" action="">
             {% csrf_token %}
             <label>Username</label>
-            <input type="text" name="username" placeholder="Enter Username" />
+            <input type="text" name="username" placeholder="Enter Username" /><br>
             <label>Password</label>
-            <input type="password" name="password" placeholder="Enter Password" />
+            <input type="password" name="password" placeholder="Enter Password" /><br>
             <input type="submit" value="Login" />
             <p>Have not signed up yet?</p>
             <a href="{% url 'register' %}">Sign up</a>
@@ -27,5 +27,5 @@
     </div>
     {% endif %}
     <script src="" async defer></script>
-</body>
+</div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<body>
+<div class='profile__body'>
     <h1>My profile </h1>
     <div class='userinfo'>
         <p>Username: {{user.username}}</p>
@@ -9,30 +9,12 @@
         <p>Last Name: {{user.last_name}}</p>
         <p>Email: {{user.email}}</p>
     </div>
-    <a href="{% url 'edit_profile' user.id %}">edit</a>
+    <a href="{% url 'edit_profile' user.id %}" class='edit-profile'>edit</a>
     {% if request.user.is_authenticated %}
     <h3>My latest created ticker:</h3>
-    <p>
-        Ticker Name: {{tickers.first.text}} ({{tickers.first.timestamp|timesince}} ago) <a href="{% url 'download' tickers.first.id %}">download link</a>
-    </p>
+    {% include "tickerapp/last_ticker.html" %}
     <h3>Created tickers:</h3>
-    <div class='ticker_table'>
-    <table>
-        <tr>
-            <th>Filename</th>
-            <th>Text</th>
-            <th>Date Created</th>
-            <th>Download</th>
-        </tr>
-        {% for ticker in tickers %}
-        <tr>
-            <td>{{ticker.filename}}</td>
-            <td>{{ticker.text}}</td>
-            <td>{{ticker.timestamp}}</td>
-            <td><a href="{% url 'download' ticker.id %}">download</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+    {% include "tickerapp/ticker_table.html" %}
     </div>
     {% endif %}
 </body>

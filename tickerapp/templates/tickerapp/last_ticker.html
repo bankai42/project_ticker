@@ -1,0 +1,9 @@
+{% load static %}
+<div class="last-created">
+    <p>
+        Filename: {{tickers.first.filename}} <a href="{% url 'download' tickers.first.id %}">
+            <img src="{% static 'ticker/images/dwld.svg' %}" width='30' height='20'>
+        </a>
+        <br> with text: "{{tickers.first.text}}" <br> ({{tickers.first.timestamp|timesince}} ago)
+    </p>
+</div>

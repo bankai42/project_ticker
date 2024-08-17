@@ -2,9 +2,9 @@
 
 {% block content %}
 {% load static %}
-<body>
+<main>
     <h1>Hi, this is Ticker</h1>
-    <p>On this page you can type any text in the form below and I will give you a ticker video file with your text</p>
+    <p>On this page you can type any text in the form below and I will give you a ticker video file with it.</p>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
@@ -15,32 +15,11 @@
     </form>
     {% if request.user.is_authenticated and tickers%}
     <h3>Last created ticker:</h3>
-    <p>
-        Ticker Name: {{tickers.first.text}} ({{tickers.first.timestamp|timesince}} ago) <a href="{% url 'download' tickers.first.id %}">download link</a>
-    </p>
+    {% include "tickerapp/last_ticker.html" %}
     <h3>Your created tickers:</h3>
-    <div class='ticker_table'>
-    <table>
-        <tr>
-            <th>Filename</th>
-            <th>Text</th>
-            <th>Date Created</th>
-            <th>Download</th>
-        </tr>
-        {% for ticker in tickers %}
-        <tr>
-            <td>{{ticker.filename}}</td>
-            <td>{{ticker.text}}</td>
-            <td>{{ticker.timestamp}}</td>
-            <td><a href="{% url 'download' ticker.id %}" class="download__img">
-                <img src= "{% static 'ticker/images/dwld.svg' %}" width='30' height='20'>
-            </a></td>
-        </tr>
-        {% endfor %}
-    </table>
-    <a href="{% url 'profile' user.id %}">View all of your tickers</a>
-    </div>
+    {% include "tickerapp/ticker_table.html" %}
+<a href="{% url 'profile' user.id %}" class="view-tikers__link">View all of your tickers</a>
     {% endif %}
-</body>
+</main>
 
 {% endblock %}

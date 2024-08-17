@@ -1,33 +1,23 @@
 {% load static %}
 
-<header class="header header--loggedIn">
-    <div class="container">
-        <a href="{% url 'home' %}" class="header__logo">
-            <!--img src="{% static 'ticker/images/logo.svg' %}" /-->
-            <h1>Ticker</h1>
-        </a>
+<header class="header">
+    <div class="header__inner">
+        <div class="header-logo">
+            <a href="{% url 'home' %}" class="header__logo">Ticker</a>
+        </div>
 
-        <nav class="header__menu">
+        <div class="header-user-log">
             <!-- Logged In -->
             {% if request.user.is_authenticated %}
-            <div class="header__user">
-                <a href="{% url 'profile' request.user.id %}">
-                    <p> {{request.user.first_name}} {{request.user.last_name}} <span>@{{request.user.username}}</span></p>
-                </a>
-                <a href="{% url 'logout' %}">
-                    <p>Logout</p>
-                </a>
+            <div class="header-userinfo">
+                <p class="username"> {{request.user.first_name}} {{request.user.last_name}}</p>
+                <a href="{% url 'profile' request.user.id %}" class = 'nickname'> @{{request.user.username}}</a>
             </div>
-
+            <a href="{% url 'logout' %}" class="log-in-out__item">Logout</a>       
             {% else %}
             <!-- Not Logged In -->
-            <a href="{% url 'login' %}">
-                <p>Login</p>
-            </a>
+            <a href="{% url 'login' %}" class="log-in-out__item">Login</a>
             {% endif %}
-        </nav>
+        </div>
     </div>
 </header>
-
-
-<hr>

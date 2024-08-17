@@ -1,0 +1,21 @@
+{% load static %}
+<div class='ticker-table'>
+    <table>
+        <tr>
+            <th>Filename</th>
+            <th>Text</th>
+            <th>Date Created</th>
+            <th>Download</th>
+        </tr>
+        {% for ticker in tickers %}
+        <tr>
+            <td>{{ticker.filename}}</td>
+            <td>{{ticker.text}}</td>
+            <td>{{ticker.timestamp}}</td>
+            <td><a href="{% url 'download' ticker.id %}" class="download__img">
+                <img src= "{% static 'ticker/images/dwld.svg' %}" width='30' height='20'>
+            </a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
