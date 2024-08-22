@@ -1,4 +1,6 @@
-videos/
+videos/*
 venv/
 *__pycache__
 #.env
+.pytest_cache
+.env.docker
