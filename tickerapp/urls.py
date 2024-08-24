@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import userEdit
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -8,5 +9,5 @@ urlpatterns = [
     path('register/', views.registerPage, name="register"),
     path('download/<int:pk>', views.downloadPage, name='download'),
     path('profile/<int:pk>', views.userProfile, name='profile'),
-    path('edit_profile/<int:pk>', views.userEdit, name='edit_profile'),
+    path('edit_profile/<int:pk>', userEdit, name='edit_profile'),
 ]

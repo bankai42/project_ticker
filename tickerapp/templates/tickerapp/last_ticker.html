@@ -1,3 +1,4 @@
+{% if tickers.first %}
 {% load static %}
 <div class="last-created">
     <p>
@@ -7,3 +8,4 @@
         <br> with text: "{{tickers.first.text}}" <br> ({{tickers.first.timestamp|timesince}} ago)
     </p>
 </div>
+{% endif %}

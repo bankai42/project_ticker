@@ -23,19 +23,14 @@ def loginPage(request):
         username = request.POST.get('username').lower()
         password = request.POST.get('password')
         
-        try:
-            user = User.objects.get(username=username)
-        except:
-            messages.error(request, "User does not exist")
-        
         user = authenticate(request, username=username, password=password)
         
         if user is not None:
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, 'Username or password does not exists')        
-    context = {'page': page}
+            messages.error(request, 'Username or password does not exists')  
+    context = {'page': page, }
     return render(request, 'tickerapp/login_register.html', context)
 
 
@@ -67,15 +62,12 @@ def home(request):
             text = form.cleaned_data['text']
             filename = form.cleaned_data['filename']
             video_path = create_ticker(text, filename)
-            #print(video_path)
-            
-            # Сохранение данных в базе данных
+
             owner = request.user if request.user.is_authenticated else None
             video_request = Ticker(owner=owner, text=text, filename=filename)
             video_request.video_file.save(os.path.basename(video_path), open(video_path, 'rb'))
             video_request.save()
             
-            # Удаление временного файла
             os.remove(video_path)
             
             if 'create_and_download' in request.POST:
@@ -95,7 +87,7 @@ def home(request):
 
 def downloadPage(request, pk):
     ticker = Ticker.objects.get(id=pk)
-    if (request.user.is_authenticated & (request.user == ticker.owner)) | (ticker.owner == None):
+    if (request.user.is_authenticated and (request.user == ticker.owner)) or (ticker.owner == None):
         video_path = str(ticker.video_file)
         with open(video_path, 'rb') as f:
             response = HttpResponse(f.read(), content_type='video/x-msvideo')
@@ -108,13 +100,18 @@ def downloadPage(request, pk):
 @login_required(login_url='login')
 def userProfile(request, pk):
     user = User.objects.get(id=pk)
+    if request.user.id != user.id:
+        return HttpResponse('You are not allowed here!')
     tickers = user.ticker_set.all().order_by('-timestamp').values()
     context = {'user': user, 'tickers': tickers}
     return render(request, 'tickerapp/profile.html', context)
 
+
 @login_required(login_url='login')
 def userEdit(request, pk):
     user = User.objects.get(id=pk)
+    if request.user.id != user.id:
+        return HttpResponse('You are not allowed here!')    
     form = UserForm(instance=user)
     
     if request.method == 'POST':

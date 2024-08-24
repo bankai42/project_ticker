@@ -11,6 +11,11 @@
             <label>Password</label>
             <input type="password" name="password" placeholder="Enter Password" /><br>
             <input type="submit" value="Login" />
+            {% if messages %}
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+            {% endif %}
             <p>Have not signed up yet?</p>
             <a href="{% url 'register' %}">Sign up</a>
         </form>
