@@ -1,21 +1,6 @@
 import pytest
 from django.urls import reverse
-from django.contrib.auth.models import User
-from django.test import Client
 from tickerapp.forms import UserForm
-
-TESTPASS = 'testpassword'
-
-@pytest.fixture
-def test_user():
-    test_user = User.objects.create_user(username='testuser', password=TESTPASS)
-    return test_user
-
-@pytest.fixture
-def auth_client(test_user):
-    client = Client()
-    client.login(username=test_user.username, password=TESTPASS)
-    return client
 
 
 @pytest.fixture
