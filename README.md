@@ -21,7 +21,10 @@ Windows
 ```
 Linux
 ```bash
+  apt-get update
+  apt-get -y install libpq-dev gcc
   source venv/bin/activate
+  pip install psycopg2
   pip install -r requirements.txt
 ```
 
