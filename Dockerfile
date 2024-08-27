@@ -9,6 +9,9 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 COPY requirements.txt /app/
+# install psycopg2 dependencies
+RUN apk update
+RUN apk add postgresql-dev gcc python3-dev musl-dev
 RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . /app/
