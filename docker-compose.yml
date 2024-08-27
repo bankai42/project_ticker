@@ -12,3 +12,12 @@ services:
       - .env
     depends_on:
       - db
+
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=tickerdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ROOT

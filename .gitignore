@@ -4,3 +4,5 @@ venv/
 #.env
 .pytest_cache
 .env.docker
+old_Dockerfile
+.gitignore
