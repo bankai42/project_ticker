@@ -12,7 +12,7 @@ Ticker - is a running string with some text.
 To deploy this project clone this repository. Create and activate virtual environment and install requirements.
 
 ```bash
-  python -m venv venv
+  python3 -m venv venv
 ```
 Windows
 ```bash
@@ -27,11 +27,11 @@ Linux
 
 Migrate database
 ```bash
-  python manage.py migrate
+  python3 manage.py migrate
 ```
 Run the application
 ```bash
-  python manage.py runserver
+  python3 manage.py runserver
 ```
 
 
