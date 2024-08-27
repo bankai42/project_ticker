@@ -6,3 +6,4 @@ venv/
 .env.docker
 old_Dockerfile
 .gitignore
+tickerdb.sqlite3
