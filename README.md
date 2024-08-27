@@ -46,7 +46,7 @@ Run the application
 #### Get user
 
 ```http
-  GET /api/user/{id}
+  GET /api/users/{id}
 ```
 
 #### Get all tickers
@@ -58,6 +58,6 @@ Run the application
 #### Get ticker
 
 ```http
-  GET /api/ticker/{id}
+  GET /api/tickers/{id}
 ```
 
