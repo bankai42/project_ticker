@@ -17,10 +17,12 @@ To deploy this project clone this repository. Create and activate virtual enviro
 Windows
 ```bash
   source venv/Scripts/activate
+  pip install -r requirements.txt
 ```
 Linux
 ```bash
   source venv/bin/activate
+  pip install -r requirements.txt
 ```
 
 Migrate database
