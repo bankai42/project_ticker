@@ -3,7 +3,7 @@ version: '3.8'
 services:
   web:
     build: .
-    command: gunicorn --bind 0.0.0.0:8000 ticker.wsgi:application
+    command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -16,8 +16,11 @@ services:
   db:
     image: postgres
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_DB=tickerdb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=ROOT
+
+volumes:
+  postgres_data:

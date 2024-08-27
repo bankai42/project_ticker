@@ -17,7 +17,4 @@ RUN \
 
 COPY . /app/
 
-RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
-
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "ticker.wsgi:application"]
