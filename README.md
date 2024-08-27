@@ -1,7 +1,7 @@
 
 # Ticker
 
-A simple web-app for creatint tickers online.
+A simple web-app for creating tickers online.
 Ticker - is a running string with some text.
 
 
